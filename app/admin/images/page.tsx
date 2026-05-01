@@ -272,8 +272,8 @@ export default function ImagesPage() {
         <ul className="list-disc list-inside space-y-1 text-xs">
           <li>Only <strong>public</strong> images appear in the main gallery</li>
           <li>Deleting an image also deletes all associated captions and votes</li>
-          <li>Use "Make Private" to hide images from users without deletion</li>
-          <li>Use the "Add Image" button to register new image URLs</li>
+          <li>Use &quot;Make Private&quot; to hide images from users without deletion</li>
+          <li>Use the &quot;Add Image&quot; button to register new image URLs</li>
         </ul>
       </div>
     </div>

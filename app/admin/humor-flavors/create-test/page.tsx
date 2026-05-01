@@ -214,7 +214,7 @@ export default function CreateIceCreamFlavorPage() {
           Reimagines any image as a creative ice cream flavor with a punchy viral caption.
         </p>
         <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
-          <li><strong>Step 1</strong> (temp 1.0): Invent a creative ice cream flavor and generate a viral caption</li>
+          <li><strong>Step 1</strong> (temp 0.7): Invent a creative ice cream flavor and generate a viral caption</li>
         </ul>
       </div>
 

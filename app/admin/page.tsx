@@ -9,6 +9,10 @@ export default async function AdminDashboard() {
     getAdminDashboardStats(),
     getCaptionStats(),
   ]);
+  const captionsWithVotesPercent =
+    captionStats.totalCaptions > 0
+      ? ((captionStats.captionsWithVotes / captionStats.totalCaptions) * 100).toFixed(0)
+      : "0";
 
   return (
     <div className="space-y-8">
@@ -70,7 +74,7 @@ export default async function AdminDashboard() {
         <StatCard
           title="Captions With Votes"
           value={captionStats.captionsWithVotes}
-          subtitle={`${((captionStats.captionsWithVotes / captionStats.totalCaptions) * 100).toFixed(0)}% of total`}
+          subtitle={`${captionsWithVotesPercent}% of total`}
         />
         <StatCard
           title="5⭐ Quality Captions"
@@ -93,7 +97,7 @@ export default async function AdminDashboard() {
           </h2>
           <div className="space-y-3">
             {captionStats.controversial && captionStats.controversial.length > 0 ? (
-              captionStats.controversial.map((caption: any, idx: number) => (
+              captionStats.controversial.map((caption: any) => (
                 <div
                   key={caption.id}
                   className="flex items-start justify-between py-2 border-b border-gray-100 dark:border-slate-700 last:border-b-0"

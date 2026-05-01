@@ -352,7 +352,7 @@ export default function LLMPromptChainsPage() {
         <p className="font-medium mb-2">ℹ️ About LLM Responses</p>
         <p>
           LLM responses are automatically generated and stored when the LLM processes a prompt chain. This view shows the
-          processing time and response content. Responses cannot be edited directly—they reflect the LLM's output at generation time.
+          processing time and response content. Responses cannot be edited directly - they reflect the LLM&apos;s output at generation time.
         </p>
       </div>
     </div>

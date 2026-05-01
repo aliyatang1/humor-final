@@ -52,7 +52,7 @@ export default async function GalleryPage() {
             HUMOR FEED
           </h1>
           <p className="mt-3 text-base text-slate-500 dark:text-slate-400">
-            The internet's quiet thoughts, out loud.
+            The internet&apos;s quiet thoughts, out loud.
           </p>
           <div className="mt-6 flex justify-center">
             <div className="h-[3px] w-20 rounded-full bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400" />

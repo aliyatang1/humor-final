@@ -8,6 +8,7 @@ export async function middleware(req: NextRequest) {
   // Allow unauthenticated routes + Next assets
   if (
     path.startsWith("/login") ||
+    path.startsWith("/logout") ||
     path.startsWith("/auth/callback") ||
     path.startsWith("/_next") ||
     path === "/favicon.ico"

@@ -54,6 +54,16 @@ export async function getAdminDashboardStats() {
     current.latest = vote.created_datetime_utc;
   });
 
+  const recentVotesByCaption = new Map<string, number>();
+  allVotes?.forEach((vote: any) => {
+    if (vote.created_datetime_utc >= weekAgo.toISOString()) {
+      recentVotesByCaption.set(
+        vote.caption_id,
+        (recentVotesByCaption.get(vote.caption_id) || 0) + 1
+      );
+    }
+  });
+
   // Top voted captions
   const topCaptions = (allCaptions || [])
     .map((cap: any) => {
@@ -67,16 +77,16 @@ export async function getAdminDashboardStats() {
     .sort((a, b) => b.total_votes - a.total_votes)
     .slice(0, 5);
 
-  // Trending captions (newest with high votes)
+  // Trending captions (highest vote activity in the last 7 days)
   const trendingCaptions = (allCaptions || [])
     .map((cap: any) => {
-      const votes = votesByCaption.get(cap.id);
       return {
         id: cap.id,
         content: cap.content,
-        recent_votes: votes?.total || 0,
+        recent_votes: recentVotesByCaption.get(cap.id) || 0,
       };
     })
+    .filter((cap) => cap.recent_votes > 0)
     .sort((a, b) => b.recent_votes - a.recent_votes)
     .slice(0, 5);
 
@@ -1154,9 +1164,10 @@ export async function getCaptionStats(): Promise<CaptionStats> {
     ]);
 
   const captionsWithVotes = metrics.filter((m) => m.total_votes > 0).length;
+  const votedMetrics = metrics.filter((m) => m.total_votes > 0);
   const avgRating =
-    metrics.length > 0
-      ? metrics.reduce((sum, m) => sum + m.rating_percent, 0) / metrics.length
+    votedMetrics.length > 0
+      ? votedMetrics.reduce((sum, m) => sum + m.rating_percent, 0) / votedMetrics.length
       : 0;
 
   return {
